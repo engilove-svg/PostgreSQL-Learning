@@ -1,0 +1,34 @@
+# Today is a reveiw day
+
+SELECT employees.name,departments.department_name
+FROM employees
+JOIN departments
+ON employees.department_id=departments.id
+
+SELECT customers.name,orders_id
+FROM customers
+LEFT JOIN orders
+ON customers.id = orders.id
+
+SELECT companies.company_name,applications.position,applications.status
+FROM applications
+JOIN companies
+ON applications.company_id = companies.id
+WHERE applications.status = 'Interview'
+
+SELECT applications.position,
+       applications.salary,
+       CASE
+          WHEN salary >= 70000 THEN 'HIGH'
+          WHEN salary >= 50000 THEN 'MEDIUM'
+          ELSE 'LOW'
+        END AS salary_level
+FROM applications;
+      
+SELECT employees.name,employees.salary
+FROM employees
+WHERE salary > (
+         SELECT AVG(salary)
+         FROM employees
+);
+

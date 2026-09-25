@@ -20,3 +20,10 @@ WHERE EXISTS (
     FROM orders AS o
     WHERE o.customer_id = c.id
 );
+
+SELECT name,salary
+FROM employees
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employees
+);
