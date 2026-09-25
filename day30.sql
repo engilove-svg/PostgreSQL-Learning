@@ -11,8 +11,11 @@ SELECT position,
        status,
        CASE
            WHEN status = 'Offer' THEN 'Successful'
+           SELECT position,
+       status,
+       CASE
+           WHEN status = 'Offer' THEN 'Successful'
            WHEN status = 'Interview' THEN 'In Progress'
-           WHEN status = 'Applied' THEN 'In Progress'
            ELSE 'Closed'
        END AS application_stage
 FROM applications;
