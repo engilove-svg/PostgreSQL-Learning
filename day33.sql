@@ -1,3 +1,4 @@
+// CTSs
 WITH high_earners AS (
     SELECT name, salary
     FROM employees
@@ -44,5 +45,28 @@ WITH application_counts AS (
 SELECT companies.company_name ,
        application_counts.application_count
 FROM companies
-JOIN application_counts
+LEFT JOIN application_counts
     ON companies.id = application_counts.company_id
+
+
+// multiple CTSs
+
+WITH application_counts AS (
+    SELECT company_id,
+           COUNT(*) AS total_applications
+    FROM applications
+    GROUP BY company_id
+),
+interview_counts AS (
+    SELECT company_id,
+           COUNT(*) AS total_interviews
+    FROM applications
+    WHERE status = 'Interview'
+    GROUP BY company_id
+)
+SELECT application_count.company_id,
+       application_counts.total_applications,
+       interview_counts.total_interviews
+FROM application_counts
+JOIN interview_counts
+    ON application_counts.company_id=interview_counts.company_id
