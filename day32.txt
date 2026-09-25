@@ -32,3 +32,28 @@ WHERE salary > (
          FROM employees
 );
 
+SELECT companies.company_name,
+       COUNT(applications.id) AS interview_count
+FROM companies
+LEFT JOIN applications
+ON companies.id = applications.company_id 
+AND application.status = 'Interview'
+GROUP BY companies.company_name;
+
+SELECT employees.name,
+       departments.department_name,
+       employees.salary
+FROM employees
+JOIN departments
+ON employees.department_id = departments.id
+WHERE employees.salary > 50000;
+
+SELECT companies.company_name,
+       COUNT(applications.id) AS application_count
+FROM companies
+LEFT JOIN applications
+ON  company.id = applications.company_id
+GROUP BY companies.company_name;
+
+
+
