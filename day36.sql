@@ -15,3 +15,10 @@ EXPLAIN ANALYZE
 SELECT *
 FROM applications
 WHERE company_name = 'OLG';
+
+SELECT job_title, status
+FROM applications
+WHERE company_name = 'OLG'
+  AND status = 'Applied';
+CREATE INDEX idx3
+ON applications(company_name, status);
