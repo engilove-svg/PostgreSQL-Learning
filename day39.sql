@@ -15,5 +15,8 @@ SELECT company_name, COUNT(*) AS total
 FROM applications
 GROUP BY company_name;
 
-
+SELECT company_name , COUNT(*) AS total
+FROM applications
+GROUP BY company_name
+HAVING COUNT(*) > 2;
 
